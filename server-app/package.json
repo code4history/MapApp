@@ -15,6 +15,7 @@
     "dotenv": "^16.4.5",
     "mysql2": "^3.11.0",
     "nuxt": "^3.13.0",
+    "ohmyfetch": "^0.4.21",
     "vue": "latest"
   }
 }
