@@ -10,12 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxtjs/auth-next": "^5.0.0-1667386184.dfbbb54",
-    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "maplibre-gl": "^4.7.0",
     "mysql2": "^3.11.0",
     "nuxt": "^3.13.0",
-    "ohmyfetch": "^0.4.21",
     "vue": "latest"
   }
 }
