@@ -1,15 +1,7 @@
-export default {
-  /*modules: [
-    '@nuxtjs/auth-next'
-  ],
+export default defineNuxtConfig({
+  ssr: true,  // SSR が必要な場合
+  modules: ["@sidebase/nuxt-auth"],
   auth: {
-    strategies: {
-      google: {
-        clientId: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      },
-    },
-  },*/
-}
-
-
+    globalAppMiddleware: true, // サイト全体で認証を必要にする
+  }
+});
