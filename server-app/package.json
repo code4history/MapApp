@@ -10,10 +10,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@sidebase/nuxt-auth": "^0.9.2",
     "dotenv": "^16.4.5",
     "maplibre-gl": "^4.7.0",
     "mysql2": "^3.11.0",
+    "next-auth": "^4.21.1",
     "nuxt": "^3.13.0",
-    "vue": "latest"
+    "vue": "latest",
+    "vuetify": "^3.7.1"
   }
 }

@@ -1,4 +1,11 @@
-export default {
+export default defineNuxtConfig({
+  modules: ['@sidebase/nuxt-auth'],
+  auth: {
+    // 認証の設定（必要に応じてここに追加）
+  }
+});
+
+//export default {
   /*modules: [
     '@nuxtjs/auth-next'
   ],
@@ -10,6 +17,6 @@ export default {
       },
     },
   },*/
-}
+//}
 
 
