@@ -26,8 +26,12 @@ async function mySignInHandler({ username, password, callbackUrl }: { username: 
 
 <template>
   <div>
-    <button @click="signIn('github')">
-      Sign in with github
+    <button @click="signIn('twitter')">
+      Sign in with X (Twitter)
+    </button>
+    <br>
+    <button @click="signIn('google')">
+      Sign in with Google
     </button>
     <br>
     <input v-model="username" type="text" placeholder="username (jsmith)">

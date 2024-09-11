@@ -20,6 +20,11 @@ export default NuxtAuthHandler({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? 'your-client-secret'
     }),
     // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
+    TwitterProvider.default({
+      clientId: process.env.TWITTER_CLIENT_ID ?? 'your-client-id',
+      clientSecret: process.env.TWITTER_CLIENT_SECRET ?? 'your-client-secret'
+    }),
+    // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
     CredentialsProvider.default({
       // The name to display on the sign in form (e.g. 'Sign in with...')
       name: 'Credentials',
