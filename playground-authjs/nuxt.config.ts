@@ -5,9 +5,7 @@ export default defineNuxtConfig({
     provider: {
       type: 'authjs'
     },
-    globalAppMiddleware: {
-      isEnabled: true
-    },
+    globalAppMiddleware: true,
     baseURL: `http://127.0.0.1:${process.env.PORT || 3000}`
   },
   routeRules: {

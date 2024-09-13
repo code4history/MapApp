@@ -1,7 +1,29 @@
 <script setup lang="ts">
 import { definePageMeta } from '#imports'
+//import { useAuth } from '#auth'
+import { useRouter } from 'vue-router'
+import { onMounted } from 'vue'
 
+// ページのメタ情報を設定
 definePageMeta({ auth: false })
+
+// 認証とリダイレクト処理
+const { status, data: session } = useAuth()
+const router = useRouter()
+
+onMounted(() => {
+  console.log(status);
+  console.log(session);
+  console.log(status.value);
+  console.log(session.value);
+  console.log(session.value?.user);
+  console.log(session.value?.user?.isNewUser);
+  // 認証状態が 'authenticated' で、ユーザーが新規ユーザーの場合にリダイレクト
+  /*if (status.value === 'authenticated' && session.value?.user?.isNewUser) {
+    console.log("router pushed");
+    router.push('/account')
+  }*/
+})
 </script>
 
 <template>
