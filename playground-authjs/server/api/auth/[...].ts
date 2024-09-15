@@ -68,13 +68,14 @@ export default NuxtAuthHandler({
     async signIn({ user, account, profile, email, credentials }) {
       console.log(`signIn ${user} ${account} ${profile} ${email} ${credentials}`);
 
-      /*/ 既存のユーザーをメールアドレスで検索
+      // 1. 既存のユーザーをメールアドレスで検索
       const existingUser = await prisma.user.findUnique({
-        where: { email: user.email }
+        where: { email: user.email },
       });
 
       if (existingUser) {
-        // 既存のユーザーが見つかった場合、そのユーザーに新しいアカウントを追加
+        console.log("Existing User");
+        // 2. 同じプロバイダーのアカウントがすでに存在するか確認
         const existingAccount = await prisma.account.findFirst({
           where: {
             provider: account.provider,
@@ -83,57 +84,33 @@ export default NuxtAuthHandler({
           },
         });
 
-        if (!existingAccount) {
-          // 新しいアカウントをユーザーに紐づける
-          await prisma.account.create({
-            data: {
-              userId: existingUser.id,
-              provider: account.provider,
-              providerAccountId: account.providerAccountId,
-              type: account.type,
-            },
-          });
+        // 3. アカウントがすでに存在する場合
+        if (existingAccount) {
+          // ログインを許可し、処理を終了
+          return true;
         }
-        // ログインを許可
-        return true;
+
+        // 4. 新しいアカウントを作成して既存のユーザーに紐付け
+        await prisma.account.create({
+          data: {
+            userId: existingUser.id,
+            provider: account.provider,
+            providerAccountId: account.providerAccountId,
+            type: account.type,
+            // 必要に応じてトークンも追加
+            access_token: account.access_token ?? null,
+            refresh_token: account.refresh_token ?? null,
+            expires_at: account.expires_at ?? null,
+            oauth_token: account.oauth_token ?? null,
+            oauth_token_secret: account.oauth_token_secret ?? null,
+          },
+        });
+
+        return true; // ログインを許可
       }
 
-      // 新しいユーザーを作成する場合
-      return true; // デフォルトの動作に従う*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      // OAuthプロバイダー名
-      /*const service = account.provider;
-
-      // 既存ユーザーをチェック
-      const existingUser = await prisma.user.findUnique({
-        where: {
-          sub: account.providerAccountId,  // OAuthのユーザーID(sub)
-        },
-      });
-
-      if (!existingUser) {
-        user.isNewUser = true;
-      }*/
-
-      return true; // ログインを許可
+      // 5. 新しいユーザーを作成する場合
+      return true; // デフォルトの動作に従う
     },
     async redirect({ url, baseUrl }) {
       console.log(`redirect ${url} ${baseUrl}`);
