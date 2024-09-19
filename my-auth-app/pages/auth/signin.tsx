@@ -58,6 +58,7 @@ export default function SignIn({ providers }) {
         <div className="space-y-4">
           <p className="text-center">または以下でログイン:</p>
           {Object.values(providers).map((provider) => {
+            console.log(provider);
             if (provider.name !== 'Credentials') {
               return (
                 <button
@@ -66,7 +67,7 @@ export default function SignIn({ providers }) {
                   className={`w-full py-2 rounded-md text-white flex justify-center items-center 
                   ${provider.name === 'Google' ? 'bg-red-500 hover:bg-red-600' : ''}
                   ${provider.name === 'GitHub' ? 'bg-gray-800 hover:bg-gray-900' : ''}
-                  ${provider.name === 'Twitter' ? 'bg-blue-500 hover:bg-blue-600' : ''}`}
+                  ${provider.name === 'Twitter (Legacy)' ? 'bg-blue-500 hover:bg-blue-600' : ''}`}
                 >
                   <img
                     src={`/icons/${provider.name.toLowerCase()}.svg`}

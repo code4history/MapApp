@@ -16,6 +16,7 @@
     "dotenv": "^16.4.5",
     "next": "14.2.11",
     "next-auth": "^4.24.7",
+    "node-fetch": "^3.3.2",
     "nodemailer": "^6.9.15",
     "prisma": "^5.19.1",
     "react": "^18",

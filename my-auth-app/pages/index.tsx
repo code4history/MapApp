@@ -7,6 +7,7 @@ export default function HomePage() {
   console.log(session);
 
   if (session) {
+    console.log(session);
     return (
       <div>
         <p>ログイン中: {session.user.email}</p>

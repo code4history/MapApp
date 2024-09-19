@@ -1,6 +1,6 @@
 // pages/api/auth/[...nextauth].ts
 import NextAuth from 'next-auth';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import CustomPrismaAdapter from '@/lib/custom_prisma_adaptor';
 import prisma from '../../../lib/prisma';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
@@ -9,7 +9,7 @@ import TwitterProvider from 'next-auth/providers/twitter';
 import bcrypt from 'bcrypt';
 
 export default NextAuth({
-  adapter: PrismaAdapter(prisma),
+  adapter: CustomPrismaAdapter,
   providers: [
     // クレデンシャルログイン
     CredentialsProvider({
@@ -99,16 +99,27 @@ export default NextAuth({
     },
     async session({ session, token, user }) {
       // クレデンシャルログインのユーザー情報もセッションに追加
+      console.log("Session");
+      console.log(`Session: ${JSON.stringify(session)}`);
+      console.log(`Token: ${JSON.stringify(token)}`);      
+      console.log(`User: ${JSON.stringify(user)}`);
       if (user) {
-        session.user.id = user.id;
-        session.user.email = user.email;
+        session.user = user;
+        //session.user.id = user.id;
+        //session.user.email = user.email;
       }
       return session;
     },
     async jwt({ token, user }) {
+      console.log("JWT");
+      console.log(`Token: ${JSON.stringify(token)}`);      
+      console.log(`User: ${JSON.stringify(user)}`);
       if (user) {
         token.id = user.id;
         token.email = user.email;
+        token.username = user.username;
+        token.defaultName = user.name;
+        token.defaultPicture = user.image;
       }
       return token;
     },
