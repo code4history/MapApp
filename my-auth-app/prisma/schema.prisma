@@ -58,3 +58,10 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Poi {
+  id         String    @id @default(uuid())
+  name       String
+  geom       Unsupported("geometry")
+  @@index([geom])
+}
