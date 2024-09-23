@@ -1,0 +1,19 @@
+{
+  "name": "maplibre",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "maplibre-gl": "^4.7.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}
